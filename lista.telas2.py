@@ -5,7 +5,7 @@ class Aplicacao:
     def __init__(self, janela):
         self.janela = janela
         self.janela.title("Aplicação com Múltiplas Telas")
-        self.janela.geometry("400x160")
+        self.janela.geometry("400x300")
 
         # Frames para cada tela
         self.frame1 = tk.Frame(self.janela, bg="lightblue")
@@ -17,6 +17,7 @@ class Aplicacao:
 
     def mostrar_tela1(self):
         self.ocultar_todos_frames()
+        self.limpar_frame(self.frame1)
         self.frame1.pack(fill="both", expand=True)
 
         label1 = tk.Label(self.frame1, text="Bem-vindo à Tela 1", font=("Arial", 14))
@@ -31,6 +32,7 @@ class Aplicacao:
 
     def mostrar_tela2(self):
         self.ocultar_todos_frames()
+        self.limpar_frame(self.frame2)
         self.frame2.pack(fill="both", expand=True)
 
         label2 = tk.Label(self.frame2, text="Você está na Tela 2", font=("Arial", 14))
@@ -52,6 +54,7 @@ class Aplicacao:
 
     def mostrar_tela3(self):
         self.ocultar_todos_frames()
+        self.limpar_frame(self.frame3)
         self.frame3.pack(fill="both", expand=True)
 
         label3 = tk.Label(self.frame3, text="Você está na Tela 3", font=("Arial", 14))
@@ -68,6 +71,11 @@ class Aplicacao:
         """Esconde todos os telas antes de exibir o desejado."""
         for frame in [self.frame1, self.frame2, self.frame3]:
             frame.pack_forget()
+
+    def limpar_frame(self, frame):
+        """Remove todos os widgets do frame fornecido."""
+        for widget in frame.winfo_children():
+            widget.destroy()
 
 
 # Criação e execução do aplicativo
